@@ -10,7 +10,8 @@ import ContactUs from './components/contact-us'
 import AboutUs from './components/about-us'
 import Error from './components/error'
 import Profile from './pages/profile'
-import Management from './components/sign-in(up)-manage'
+import signIn from './pages/sign-in'
+import signUp from './pages/sign-up'
 
 function App() {
 
@@ -18,8 +19,9 @@ function App() {
         <Router>
             <Header />
             <Switch>
-                <Route path={'/join-us'} exact component={Management} />
-                <Route path={'/'} component={Home} />
+                <Route path={'/'} exact component={Home} />
+                <Route path={'/sign-in'} exact component={signIn} />
+                <Route path={'/sign-up'} exact component={signUp} />
                 <Route path={ROUTES.CONTACT_US} component={ContactUs} />
                 <Route path={ROUTES.PROFILE} component={Profile} />
                 <Route path={ROUTES.CONTACT_US} component={ContactUs} />
@@ -34,7 +36,7 @@ function App() {
 
 function Home(){
     return(
-        <Redirect to='/join-us' />
+        <Redirect to='/sign-in' />
     )
 }
 
