@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-import { Button, TextField, IconButton, InputAdornment, Typography, FormControlLabel, Checkbox, createMuiTheme, makeStyles, Avatar, } from '@material-ui/core'
+import { Button, TextField, IconButton, InputAdornment, Typography, FormControlLabel, Checkbox, createMuiTheme, makeStyles } from '@material-ui/core'
 import SignInService from '../../platform/services/sign-in/SignInService'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import TwitterIcon from '@material-ui/icons/Twitter';
-import FacebookIcon from '@material-ui/icons/Facebook';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import DeleteIcon from '@material-ui/icons/GitHub';
+import icons from "../../resources/Images"
+
 
 function SignIn() {
 
@@ -40,9 +38,9 @@ function SignIn() {
 
     return (
         <div className={classes.root}>
-            <Grid container component='main' claaName={classes.baseGrid}>
-                <Grid xs={false} sm={6}></Grid>
-                <Grid xs={12} sm={6}>
+            <Grid container component='main' className={classes.baseGrid}>
+                <Grid item xs={false} sm={6}></Grid>
+                <Grid item xs={12} sm={6}>
                     <div className={classes.paper}>
                         <Typography component='h1' variant='h4' className={classes.signIn}>
                             Sign in
@@ -106,20 +104,20 @@ function SignIn() {
                                 color="primary"
                                 className={classes.signInButton}
                             >
-                                Sign in
+                                Log in
                             </Button>
                         </form>
                         <div className={classes.signInWith}>
-                            Or Sign in with
+                            Or Log in with
                             <div className={classes.icons}>
-                                <IconButton className={classes.margin}>
-                                    <FacebookIcon fontSize="large" />
+                                <IconButton>
+                                    <img src={icons[0]} className={classes.icon} />
                                 </IconButton>
-                                <IconButton className={classes.margin}>
-                                    <GitHubIcon fontSize="large" />
+                                <IconButton>
+                                    <img src={icons[1]} className={classes.icon} />
                                 </IconButton>
-                                <IconButton className={classes.margin}>
-                                    <TwitterIcon fontSize="large" />
+                                <IconButton>
+                                    <img src={icons[2]} className={classes.icon} />
                                 </IconButton>
                             </div>
                         </div>
@@ -133,11 +131,13 @@ function SignIn() {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        borderRadius: '12px',
-        margin: theme.spacing(8, 8),
+        [theme.breakpoints.up('sm')]: {
+            borderRadius: '12px',
+            margin: theme.spacing(8, 8),
+        },
     },
     baseGrid: {
-        padding: theme.spacing(8),
+        padding: theme.spacing(1),
     },
     signIn: {
         fontWeight: 'bold',
@@ -178,6 +178,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: colors.palette.primary.light,
         '&:focus': {
             boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+            backgroundColor: colors.palette.primary.main,
         },
     },
     signInWith: {
@@ -198,8 +199,8 @@ const useStyles = makeStyles((theme) => ({
     avatar: {
     },
     icon: {
-        width: '30px',
-        height: '30px',
+        width: '35px',
+        height: 'auto',
     },
 }))
 
@@ -398,7 +399,7 @@ const useStyles = makeStyles((theme) => ({
 const colors = createMuiTheme({
     palette: {
         primary: {
-            light: '#757ce8',
+            light: '#6dabe4',
             main: '#3f50b5',
             dark: '#002884',
             contrastText: '#fff',

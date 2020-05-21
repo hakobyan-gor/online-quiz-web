@@ -30,13 +30,13 @@ function SignUp() {
     }
 
     const signUp = () => {
-        
+
     }
 
     return (
         <div className={classes.root}>
-            <Grid container component='main' claaName={classes.baseGrid}>
-                <Grid xs={12} sm={6}>
+            <Grid container component='main' className={classes.baseGrid}>
+                <Grid item xs={12} sm={6}>
                     <div className={classes.paper}>
                         <Typography component='h1' variant='h4' className={classes.signIn}>
                             Sign up
@@ -46,6 +46,7 @@ function SignUp() {
                                 <AccountCircle />
                                 <TextField
                                     autoFocus
+                                    fullWidth
                                     type="text"
                                     id='firstName'
                                     name='firstName'
@@ -55,6 +56,7 @@ function SignUp() {
                                     onChange={handleChange('firstName')}
                                 />
                                 <TextField
+                                    fullWidth
                                     type="text"
                                     id='lastName'
                                     name='lastName'
@@ -114,7 +116,7 @@ function SignUp() {
                         </form>
                     </div>
                 </Grid>
-                <Grid xs={false} sm={6}></Grid>
+                <Grid item xs={false} sm={6}></Grid>
             </Grid>
         </div >
     )
@@ -123,11 +125,13 @@ function SignUp() {
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        borderRadius: '12px',
-        margin: theme.spacing(8, 8),
+        [theme.breakpoints.up('sm')]: {
+            borderRadius: '12px',
+            margin: theme.spacing(8, 8),
+        },
     },
     baseGrid: {
-        padding: theme.spacing(8),
+        padding: theme.spacing(1),
     },
     signIn: {
         fontWeight: 'bold',
@@ -196,7 +200,7 @@ const useStyles = makeStyles((theme) => ({
 const colors = createMuiTheme({
     palette: {
         primary: {
-            light: '#757ce8',
+            light: '#6dabe4',
             main: '#3f50b5',
             dark: '#002884',
             contrastText: '#fff',
