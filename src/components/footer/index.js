@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 
-export default function Footer(props) {
+function Footer(props) {
     // if (props.history.location.pathname === ROUTES.SIGN_IN)
 
     return (
@@ -9,3 +9,5 @@ export default function Footer(props) {
     )
 
 }
+
+export default Footer

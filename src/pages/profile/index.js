@@ -1,9 +1,12 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Profile extends Component {
-    render(){
-        return null
-    }
+function Profile() {
+    return (
+        <div>
+            Hello {sessionStorage.getItem('user')}
+            Your token {sessionStorage.getItem('token')}
+        </div>
+    )
 }
 
 export default Profile
