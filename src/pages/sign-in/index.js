@@ -1,23 +1,42 @@
-import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
 import { Button, TextField, IconButton, InputAdornment, Typography, FormControlLabel, Checkbox, createMuiTheme, makeStyles } from '@material-ui/core'
 import SignInService from '../../platform/services/sign-in/SignInService'
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import LockIcon from '@material-ui/icons/Lock';
-import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-import icons from "../../resources/Images"
+import Visibility from '@material-ui/icons/Visibility';
+import ROUTES from '../../platform/constants/routes';
+import LockIcon from '@material-ui/icons/Lock';
+import { useHistory } from 'react-router-dom';
+import icons from '../../resources/Images'
+import Grid from '@material-ui/core/Grid'
+import React, { useState } from 'react'
+import AuthenticationRoute from '../../platform/services/authentication/AuthenticationService';
 
 
-function SignIn() {
+function SignIn(props) {
 
     const classes = useStyles();
+    const history = useHistory();
     let [values, setValues] = useState({
         username: '',
         password: '',
         rememberMe: false,
         showPassword: false,
     });
+
+    const signIn = () => {
+        console.log(values.username);
+        console.log(values.password);
+
+        SignInService.signIn(
+            values.username,
+            values.password
+        ).then(
+            response => {
+                AuthenticationRoute.logInUser(response.data)
+                history.push(ROUTES.PROFILE)
+            }
+        )
+    }
 
     const handleMouseDownPassword = (event) => {
         event.preventDefault()
@@ -102,6 +121,7 @@ function SignIn() {
                             <Button
                                 variant="contained"
                                 color="primary"
+                                onClick={signIn}
                                 className={classes.signInButton}
                             >
                                 Log in
@@ -111,13 +131,13 @@ function SignIn() {
                             Or Log in with
                             <div className={classes.icons}>
                                 <IconButton>
-                                    <img src={icons[0]} className={classes.icon} />
+                                    <img src={icons[0]} className={classes.icon} alt='google' />
                                 </IconButton>
                                 <IconButton>
-                                    <img src={icons[1]} className={classes.icon} />
+                                    <img src={icons[1]} className={classes.icon} alt='github' />
                                 </IconButton>
                                 <IconButton>
-                                    <img src={icons[2]} className={classes.icon} />
+                                    <img src={icons[2]} className={classes.icon} alt='facebook' />
                                 </IconButton>
                             </div>
                         </div>

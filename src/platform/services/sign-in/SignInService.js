@@ -3,8 +3,8 @@ import API_URL from "../../constants/environment"
 
 class SignInService {
 
-    signIn(signInRequest){
-        return axios.post(API_URL + '/sign-in', signInRequest);
+    signIn(username, password){ 
+        return axios.post(API_URL + '/sign-in', {username, password})
     }
 
 }

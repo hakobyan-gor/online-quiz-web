@@ -1,6 +1,6 @@
-import React, { useState, Component } from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-import { Button, TextField, IconButton, InputAdornment, Typography, FormControlLabel, Checkbox, createMuiTheme, makeStyles, Avatar, } from '@material-ui/core'
+import { Button, TextField, IconButton, InputAdornment, Typography, createMuiTheme, makeStyles } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
 import Visibility from '@material-ui/icons/Visibility';
