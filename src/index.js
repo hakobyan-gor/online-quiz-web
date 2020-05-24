@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
 import * as serviceWorker from './serviceWorker'
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
@@ -12,6 +12,7 @@ import Error from './components/error'
 import Profile from './pages/profile'
 import signIn from './pages/sign-in'
 import signUp from './pages/sign-up'
+import AuthenticationRoute from './platform/AuthenticationRoute'
 
 function App() {
 
@@ -20,13 +21,13 @@ function App() {
             <Header />
             <Switch>
                 <Route path={'/'} exact component={Home} />
-                <Route path={'/sign-in'} exact component={signIn} />
-                <Route path={'/sign-up'} exact component={signUp} />
-                <Route path={ROUTES.CONTACT_US} component={ContactUs} />
-                <Route path={ROUTES.PROFILE} component={Profile} />
-                <Route path={ROUTES.CONTACT_US} component={ContactUs} />
-                <Route path={ROUTES.ABOUT_US} component={AboutUs} />
-                <Route path={ROUTES.ERROR} component={Error} />
+                <Route path={ROUTES.SIGN_IN} exact component={signIn} />
+                <Route path={ROUTES.SIGN_UP} exact component={signUp} />
+                <AuthenticationRoute path={ROUTES.CONTACT_US} component={ContactUs} />
+                <AuthenticationRoute path={ROUTES.PROFILE} component={Profile} />
+                <AuthenticationRoute path={ROUTES.CONTACT_US} component={ContactUs} />
+                <AuthenticationRoute path={ROUTES.ABOUT_US} component={AboutUs} />
+                <AuthenticationRoute component={Error} />
             </Switch>
             <Footer />
         </Router >
@@ -34,9 +35,9 @@ function App() {
 
 }
 
-function Home(){
-    return(
-        <Redirect to='/sign-in' />
+function Home() {
+    return (
+        <Redirect to={ROUTES.SIGN_IN} />
     )
 }
 

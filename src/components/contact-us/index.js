@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+// import React from "react";
 
-class ContactUs extends Component {
-    render(){
-        return null
-    }
+function ContactUs() {
+    return null
 }
 
 export default ContactUs
