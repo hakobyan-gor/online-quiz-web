@@ -24,16 +24,13 @@ function SignIn(props) {
     });
 
     const signIn = () => {
-        console.log(values.username);
-        console.log(values.password);
-
         SignInService.signIn(
             values.username,
             values.password
         ).then(
             response => {
                 AuthenticationRoute.logInUser(response.data)
-                history.push(ROUTES.PROFILE)
+                history.push(ROUTES.HOME)
             }
         )
     }
@@ -58,8 +55,8 @@ function SignIn(props) {
     return (
         <div className={classes.root}>
             <Grid container component='main' className={classes.baseGrid}>
-                <Grid item xs={false} sm={6}></Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item sm={false} sm={2} md={6}></Grid>
+                <Grid item sm={12} sm={8} md={6}>
                     <div className={classes.paper}>
                         <Typography component='h1' variant='h4' className={classes.signIn}>
                             Sign in
@@ -143,6 +140,7 @@ function SignIn(props) {
                         </div>
                     </div>
                 </Grid>
+                <Grid item sm={false} sm={2} md={false}></Grid>
             </Grid>
         </div >
     )
