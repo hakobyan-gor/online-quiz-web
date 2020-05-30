@@ -17,12 +17,12 @@ function QuizCard(props) {
             <CardActionArea onClick={() => props.handleClick(props.id)}>
                 <CardMedia
                     image={images[0]}
-                    title={props.category}
+                    title={props.name}
                     className={classes.media}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {props.category}
+                        {props.name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
                         {props.description}
