@@ -1,16 +1,23 @@
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-import { Button, TextField, IconButton, InputAdornment, Typography, createMuiTheme, makeStyles } from '@material-ui/core'
+import { Button, TextField, IconButton, InputAdornment, Typography, createMuiTheme, makeStyles, Slide, Paper } from '@material-ui/core'
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import LockIcon from '@material-ui/icons/Lock';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import Email from '@material-ui/icons/Email';
+import SignUpService from '../../platform/services/sign-up/SignUpService'
+import AuthenticationService from '../../platform/services/authentication/AuthenticationService';
+import { useHistory } from 'react-router-dom';
+import ROUTES from '../../platform/constants/routes';
 
 function SignUp() {
 
     const classes = useStyles()
+    const history = useHistory();
     const [values, setValues] = useState({
+        showConfirmationTokenForm: false,
+        confirmationToken: '',
         firstName: '',
         lastName: '',
         password: '',
@@ -29,8 +36,51 @@ function SignUp() {
         setValues({ ...values, showPassword: !values.showPassword })
     }
 
-    const signUp = () => {
+    const handleConfirmationToken = (event) => {
+        let bool = /^(\s*|\d+)$/.test(event.target.value)
 
+        if (bool) {
+            setValues({ ...values, confirmationToken: event.target.value })
+            console.log(values.confirmationToken);
+            if (event.target.value.length === 6){
+                console.log(values.confirmationToken);
+                SignUpService.verifyEmail(event.target.value).then(
+                    response => {
+                        if (response.data.success) {
+                            AuthenticationService.logInUser(response.data.data)
+                            history.push(ROUTES.HOME)
+                        } else {
+                            console.log(response.data.message);
+                        }
+                    }
+                )
+            }
+        }
+
+    }
+
+    const showConfirmationTokenForm = () => {
+        setValues({ showConfirmationTokenForm: true })
+    }
+
+    const signUp = () => {
+        let signUpRequest = {
+            firstName: values.firstName,
+            lastName: values.lastName,
+            password: values.password,
+            eMail: values.eMail,
+        }
+        SignUpService.signUp(values.firstName, values.lastName, values.password, values.eMail).then(
+            response => {
+                console.log(response.data)
+                if (response.data.success === true) {
+                    AuthenticationService.setPendingUserId(response.data.data)
+                    // showConfirmationTokenForm()
+                } else {
+                    console.log(response.data.message)
+                }
+            }
+        )
     }
 
     return (
@@ -105,14 +155,36 @@ function SignUp() {
                                     }}
                                 />
                             </div>
-                            <Button
-                                variant="contained"
-                                color="primary"
-                                className={classes.signUpButton}
-                                onClick={signUp}
-                            >
-                                Register
+                            <div>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    className={classes.signUpButton}
+                                    onClick={signUp}
+                                >
+                                    Register
                             </Button>
+                            </div>
+                            <div className={classes.fields}>
+                                {
+                                    !values.showConfirmationTokenForm
+                                        ?
+                                        <div>
+                                            <p>Your confirmation Token has been sent</p>
+                                            <p>Please, type it below</p>
+                                            <TextField
+                                                id='conf_token'
+                                                name='conf_token'
+                                                type='text'
+                                                placeholder='Your Confirmation Token'
+                                                value={values.confirmationToken}
+                                                onChange={handleConfirmationToken}
+                                            />
+                                        </div>
+                                        :
+                                        <div></div>
+                                }
+                            </div>
                         </form>
                     </div>
                 </Grid>
