@@ -1,7 +1,7 @@
-import axios from "axios";
-import API_URL from "../../constants/environment";
+import AuthenticationService from '../authentication/AuthenticationService'
+import API_URL from '../../constants/environment'
 import ROUTES from '../../constants/routes'
-import AuthenticationService from "../authentication/AuthenticationService";
+import axios from 'axios'
 
 class SignUpService {
 

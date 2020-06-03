@@ -1,6 +1,4 @@
-import React from "react";
-import { Redirect, Route } from "react-router-dom";
-import AuthenticationRoute from "../../platform/services/authentication/AuthenticationService";
+import React from 'react'
 
 function Error() {
     return (

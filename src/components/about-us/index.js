@@ -1,7 +1,7 @@
-// import React from "react";
+import React from 'react'
 
 function AboutUs() {
-    return null
+    return <div></div>
 }
 
 export default AboutUs
