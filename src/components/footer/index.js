@@ -1,13 +1,18 @@
+import ROUTES from '../../platform/constants/routes'
+import { withRouter } from 'react-router-dom'
 import React from 'react'
-import './index.css'
 
 function Footer(props) {
-    // if (props.history.location.pathname === ROUTES.SIGN_IN)
-
+    if (
+        props.history.location.pathname === ROUTES.SIGN_IN ||
+        props.history.location.pathname === ROUTES.SIGN_UP
+    ) {
+        return <div></div>
+    }
     return (
         <div></div>
     )
 
 }
 
-export default Footer
+export default withRouter(Footer)

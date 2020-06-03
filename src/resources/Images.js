@@ -1,9 +1,9 @@
-import google from './google.png'
-import github from './github.png'
 import facebook from './facebook.png'
+import github from './github.png'
+import google from './google.png'
 
 export default [
-    google,
-    github,
     facebook,
+    github,
+    google,
 ]
