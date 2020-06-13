@@ -9,7 +9,7 @@ class QuizService {
             API_URL + ROUTES.QUIZZES + '/root-categories',
             {
                 headers: {
-                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 }
             }
         )
@@ -22,7 +22,7 @@ class QuizService {
             API_URL + ROUTES.QUIZZES + '/get/category/' + id,
             {
                 headers: {
-                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 }
             }
         )

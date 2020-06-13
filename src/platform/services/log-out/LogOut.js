@@ -7,10 +7,12 @@ class LogOut{
 
     logOut(){
         axios.patch(
-            API_URL + ROUTES.LOG_OUT + '/user/id/' + AuthenticationService.getPendingUserId(),
+            // must change response model 
+            // add id in jwt response model
+            API_URL + ROUTES.LOG_OUT + '/user/id/' + AuthenticationService.getUserId(),
             {
                 headers: {
-                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
+                    'Authorization': 'Bearer ' + localStorage.getItem('token')
                 }
             }
         )

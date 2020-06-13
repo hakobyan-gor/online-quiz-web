@@ -9,7 +9,7 @@ function Home() {
     return (
         <div className={classes.root}>
             <Grid container component='main' className={classes.baseGrid}>
-                <Quiz />
+                HOME PAGE
             </Grid>
         </div>
     )

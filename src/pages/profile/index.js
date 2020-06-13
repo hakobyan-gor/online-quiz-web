@@ -8,6 +8,7 @@ function Profile() {
     return (
         <div className={classes.root}>
             <Grid container component='main' className={classes.baseGrid}>
+                MY PROFILE
             </Grid>
         </div>
     )

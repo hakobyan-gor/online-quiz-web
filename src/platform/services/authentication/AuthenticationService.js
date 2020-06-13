@@ -1,29 +1,29 @@
 class AuthenticationService {
 
     isUserLoggedIn() {
-        if (sessionStorage.getItem('user') === null) {
+        if (localStorage.getItem('user') === null) {
             return false
         }
         return true
     }
 
     logInUser(data) {
-        sessionStorage.setItem('user', data.username)
-        sessionStorage.setItem('token', data.token)
+        localStorage.setItem('user', data.username)
+        localStorage.setItem('token', data.token)
     }
 
     setPendingUserId(data){
-        sessionStorage.setItem('pendingUserId', data.id)
+        localStorage.setItem('pendingUserId', data.id)
     }
 
     getPendingUserId(){
-        return sessionStorage.getItem('pendingUserId')
+        return localStorage.getItem('pendingUserId')
     }
 
     logOut(){
-        sessionStorage.removeItem('pendingUserId')
-        sessionStorage.removeItem('user')
-        sessionStorage.removeItem('token')
+        localStorage.removeItem('pendingUserId')
+        localStorage.removeItem('user')
+        localStorage.removeItem('token')
     }
 
 }
